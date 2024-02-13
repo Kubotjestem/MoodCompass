@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+
+
+
+{% block content %}
+
+
+<style>
+  .error-message {
+    color: red;
+    display: none;
+  }
+</style>
+
+
+<script>
+  function toggleForm(type) {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+
+    if (type === 'login') {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+    } else if (type === 'register') {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+    }
+  }
+
+  function validatePasswords() {
+    const password1 = document.getElementById('register-password').value;
+    const password2 = document.getElementById('confirm-password').value;
+    const errorMessage = document.getElementById('password-match-error');
+
+    if (password1 !== password2) {
+      errorMessage.style.display = 'block';
+      return false;
+    } else {
+      errorMessage.style.display = 'none';
+      return true;
+    }
+  }
+</script>
+
+
+<button onclick="toggleForm('login')">Zaloguj się</button>
+<button onclick="toggleForm('register')">Zarejestruj się</button>
+
+<form id="login-form" style="display: block;">
+  <label for="login-email">Email:</label><br>
+  <input type="email" id="login-email" name="email"><br>
+  <label for="login-password">Hasło:</label><br>
+  <input type="password" id="login-password" name="password"><br>
+  <input type="submit" value="Zaloguj">
+</form>
+
+<form id="register-form" style="display: none;" onsubmit="return validatePasswords();">
+  <label for="register-name">Imię:</label><br>
+  <input type="text" id="register-name" name="name"><br>
+  <label for="register-email">Email:</label><br>
+  <input type="email" id="register-email" name="email"><br>
+  <label for="register-password">Hasło:</label><br>
+  <input type="password" id="register-password" name="password"><br>
+  <label for="confirm-password">Powtórz hasło:</label><br>
+  <input type="password" id="confirm-password" name="confirm_password"><br>
+  <label for="gender">Płeć:</label><br>
+  <select id="gender" name="gender">
+    <option value="male">Mężczyzna</option>
+    <option value="female">Kobieta</option>
+    <option value="other">Wolę nie podawać</option>
+  </select><br>
+  <input type="submit" value="Zarejestruj">
+  <p id="password-match-error" class="error-message">Hasła nie są takie same.</p>
+</form>
+
+</body>
+</html>
+
+{% endblock content %}
