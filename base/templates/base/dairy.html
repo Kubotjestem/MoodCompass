@@ -1,0 +1,22 @@
+{% extends   'main.html' %}
+
+
+{% block content %}
+
+<h1>Dairy template</h1>
+
+
+<div>
+
+    <div>
+        {% for dairy in dairies %}
+            <div>
+                <h5>{{dairy.id}} -- {{dairy.name}}</h5>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock content %}

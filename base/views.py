@@ -9,16 +9,18 @@ dairies = [
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'base/home.html')
 
 
 
 def dairy(request):
-    return render(request, 'dairy.html')
+    context = {'dairies': dairies}
+    return render(request, 'base/dairy.html', context)
 
 
 
 def signin(request):
     return render(request, 'signin.html')
+
 
 
